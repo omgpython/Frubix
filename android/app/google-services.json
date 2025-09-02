@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1098857164841",
+    "project_id": "frubix-6712a",
+    "storage_bucket": "frubix-6712a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098857164841:android:21c353e0baba03038bac38",
+        "android_client_info": {
+          "package_name": "com.example.frubix"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_zB51HpSi91AZ3eh84I4AukM3d-QfZgI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
