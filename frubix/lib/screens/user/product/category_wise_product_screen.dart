@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frubix/custom/user_scaffolds.dart';
 import 'package:go_router/go_router.dart';
@@ -38,6 +39,48 @@ class _CategoryWiseProductScreenState extends State<CategoryWiseProductScreen> {
     return CustomScaffold(
       context: context,
       appBarTitle: 'Products',
+      actions: [
+        StreamBuilder(
+          stream:
+              FirebaseFirestore.instance
+                  .collection(CART_COLLECTION)
+                  .where(CART_USER_ID, isEqualTo: manager.getUserId())
+                  .where(CART_STATUS, isEqualTo: false)
+                  .snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return CupertinoActivityIndicator();
+            }
+            if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            }
+            if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+              return IconButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text('Cart is empty')));
+                },
+                icon: Badge(
+                  label: Text('0'),
+                  child: Icon(Icons.shopping_cart_outlined),
+                ),
+              );
+            }
+
+            int count = snapshot.data!.docs.length;
+            return IconButton(
+              onPressed: () {
+                context.push(Routes.userCartScreen);
+              },
+              icon: Badge(
+                label: Text(count.toString()),
+                child: Icon(Icons.shopping_cart_outlined),
+              ),
+            );
+          },
+        ),
+      ],
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(

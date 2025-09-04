@@ -21,7 +21,10 @@ import 'package:frubix/screens/user/login_screen.dart';
 import 'package:frubix/screens/user/order/address_screen.dart';
 import 'package:frubix/screens/user/order/cart_screen.dart';
 import 'package:frubix/screens/user/order/checkout_screen.dart';
+import 'package:frubix/screens/user/order/order_detail_screen.dart';
+import 'package:frubix/screens/user/order/order_screen.dart';
 import 'package:frubix/screens/user/product/category_wise_product_screen.dart';
+import 'package:frubix/screens/user/product/search_product_screen.dart';
 import 'package:frubix/screens/user/profile/about_us_screen.dart';
 import 'package:frubix/screens/user/profile/contact_us_screen.dart';
 import 'package:frubix/screens/user/profile/faq_screen.dart';
@@ -62,6 +65,7 @@ class Routes {
   static final String adminEditProductScreen = '/admin/product/edit/:id';
   static final String adminViewProductScreen = '/admin/product/view/:id';
   static final String userProductDetailScreen = '/user/product/detail/:id';
+  static final String userSearchProductScreen = '/user/product/search';
 
   //order
   static final String userCartScreen = '/user/cart';
@@ -73,6 +77,8 @@ class Routes {
   static final String adminCompletedOrderScreen = '/admin/order/completed';
   static final String adminOrderDetailScreen =
       '/admin/order/details/:index/:id';
+  static final String userOrderScreen = '/user/order';
+  static final String userOrderDetailsScreen = '/user/order/details/:id';
 
   //profile
   static final String userProfileScreen = '/user/profile';
@@ -174,6 +180,10 @@ class Routes {
           return ProductDetailScreen(id: id!);
         },
       ),
+      GoRoute(
+        path: userSearchProductScreen,
+        builder: (context, state) => SearchProductScreen(),
+      ),
 
       //Order
       GoRoute(path: userCartScreen, builder: (context, state) => CartScreen()),
@@ -207,6 +217,17 @@ class Routes {
           final id = state.pathParameters['id'];
           final index = state.pathParameters['index'];
           return AdminOrderDetailScreen(index: index!, id: id!);
+        },
+      ),
+      GoRoute(
+        path: userOrderScreen,
+        builder: (context, state) => OrderScreen(),
+      ),
+      GoRoute(
+        path: userOrderDetailsScreen,
+        builder: (context, state) {
+          final id = state.pathParameters['id'];
+          return OrderDetailScreen(id: id!);
         },
       ),
 

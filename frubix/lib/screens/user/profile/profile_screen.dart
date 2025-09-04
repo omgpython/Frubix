@@ -154,7 +154,9 @@ class ProfileScreen extends StatelessWidget {
               customListTile(
                 leading: Icons.shopping_cart_outlined,
                 title: 'My Orders',
-                onTap: () {},
+                onTap: () {
+                  context.push(Routes.userOrderScreen);
+                },
               ),
 
               SizedBox(height: 20),

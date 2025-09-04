@@ -28,7 +28,6 @@ Widget UserBottomNavScaffold({
         style: GoogleFonts.rubik(fontWeight: FontWeight.bold),
       ),
       centerTitle: centerTitle,
-      actions: [IconButton(icon: Icon(Icons.logout), onPressed: () {})],
     ),
     body: body,
     bottomNavigationBar: Container(
@@ -96,6 +95,7 @@ Widget CustomScaffold({
   required String appBarTitle,
   bool centerTitle = true,
   required Widget body,
+  List<Widget>? actions,
 }) {
   PrefManager manager = PrefManager();
 
@@ -112,6 +112,7 @@ Widget CustomScaffold({
         style: GoogleFonts.rubik(fontWeight: FontWeight.bold),
       ),
       centerTitle: centerTitle,
+      actions: actions,
     ),
     body: body,
   );
