@@ -24,7 +24,6 @@ import 'package:frubix/screens/user/order/checkout_screen.dart';
 import 'package:frubix/screens/user/order/order_detail_screen.dart';
 import 'package:frubix/screens/user/order/order_screen.dart';
 import 'package:frubix/screens/user/product/category_wise_product_screen.dart';
-import 'package:frubix/screens/user/product/search_product_screen.dart';
 import 'package:frubix/screens/user/profile/about_us_screen.dart';
 import 'package:frubix/screens/user/profile/contact_us_screen.dart';
 import 'package:frubix/screens/user/profile/faq_screen.dart';
@@ -65,7 +64,6 @@ class Routes {
   static final String adminEditProductScreen = '/admin/product/edit/:id';
   static final String adminViewProductScreen = '/admin/product/view/:id';
   static final String userProductDetailScreen = '/user/product/detail/:id';
-  static final String userSearchProductScreen = '/user/product/search';
 
   //order
   static final String userCartScreen = '/user/cart';
@@ -179,10 +177,6 @@ class Routes {
           final id = state.pathParameters['id'];
           return ProductDetailScreen(id: id!);
         },
-      ),
-      GoRoute(
-        path: userSearchProductScreen,
-        builder: (context, state) => SearchProductScreen(),
       ),
 
       //Order
